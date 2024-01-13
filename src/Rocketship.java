@@ -2,6 +2,11 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public class Rocketship extends GameObject{
+	
+	public boolean right = false;
+	public boolean left = false;
+	public boolean up = false;
+	public boolean down = false;
 
 	public Rocketship(int x, int y, int width, int height) {
 		
@@ -14,6 +19,25 @@ public class Rocketship extends GameObject{
 		
 		g.setColor(Color.BLUE);
         g.fillRect(x, y, width, height);
+	}
+	
+	public void update() {
+		if (right && x < LeagueInvaders.WIDTH - width) {
+			right();
+		}
+		
+		if (left && x > 0) {
+			left();
+		}
+		
+		if (up && y > 0) {
+			up();
+			System.out.println(y);
+		}
+		
+		if (down && y < LeagueInvaders.HEIGHT - height) {
+			down();
+		}
 	}
 	
 	public void right() {

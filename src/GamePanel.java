@@ -53,6 +53,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 		 
 	}
 	void updateGameState() { 
+		rocketship.update();
 		 
 	}
 	void updateEndState() { 
@@ -134,37 +135,58 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 			if (e.getKeyCode()==KeyEvent.VK_UP) {
 			    System.out.println("UP");
 			    if (rocketship.y > 0) {
-			    	rocketship.up();
+			    	rocketship.up = true;
 				}
+			    else {
+			    	rocketship.up = false;
+			    }
 			}
 			
 			if (e.getKeyCode()==KeyEvent.VK_DOWN) {
 			    System.out.println("DOWN");
-			    if (rocketship.y < 720) {
-			    	rocketship.down();
-			    }
+			    	rocketship.down = true;
 			}
 			
 			if (e.getKeyCode()==KeyEvent.VK_LEFT) {
 			    System.out.println("LEFT");
 			    if (rocketship.x > 0) {
-			    	rocketship.left();
+			    	rocketship.left = true;
+			    }
+			    else {
+			    	rocketship.left = false;
 			    }
 			}
 			
 			if (e.getKeyCode()==KeyEvent.VK_RIGHT) {
 			    System.out.println("RIGHT");
 			    if (rocketship.x < 450) {
-			    	rocketship.right();
+			    	rocketship.right = true;
+			    }
+			    else {
+			    	rocketship.right = false;
 			    }
 			}
 		}
 	}
 
 	@Override
-	public void keyReleased(KeyEvent arg0) {
+	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
+		if (e.getKeyCode()==KeyEvent.VK_UP) {
+		    	rocketship.up = false;
+		}
 		
+		if (e.getKeyCode()==KeyEvent.VK_DOWN) {
+		    	rocketship.down = false;
+		}
+		
+		if (e.getKeyCode()==KeyEvent.VK_LEFT) {
+		    	rocketship.left = false;
+		}
+		
+		if (e.getKeyCode()==KeyEvent.VK_RIGHT) {
+		    	rocketship.right = false;
+		}
 	}
 
 	@Override
