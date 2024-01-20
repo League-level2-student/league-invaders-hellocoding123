@@ -15,20 +15,31 @@ public class ObjectManager {
 	void addProjectile(Projectile projectile) {
 		
 		projectiles.add(projectile);
+		
+		for(int i = 0; i < projectiles.size(); i++ ) {
+			projectiles.get(i).update();
+		}
 	}
 	
 	void addAlien() {
+		
 		aliens.add(new Alien(random.nextInt(LeagueInvaders.WIDTH),0,50,50));
+		
 	}
 	
 	void update() {
 		
-	}
-	 /*
-	 MODEL MANAGMENT STEP 5 (idk where to put loop):
-	 
-	for(int i = 0; i < aliens.size(); i++ ) {
+		for(int i = 0; i < aliens.size(); i++ ) {
+			aliens.get(i).update();
+			
+			if(aliens.get(i).y < LeagueInvaders.HEIGHT || aliens.get(i).y > 0) {
+				aliens.get(i).isActive = false;
+			}
+		}
 		
+		for(int i = 0; i < projectiles.size(); i++ ) {
+			projectiles.get(i).update();
+		}
 	}
-	*/
 }
+//sfggggggggggggggggggggggggggggg
