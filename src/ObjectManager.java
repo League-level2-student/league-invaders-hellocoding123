@@ -1,3 +1,4 @@
+import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -41,5 +42,32 @@ public class ObjectManager {
 			projectiles.get(i).update();
 		}
 	}
+	
+	void draw(Graphics g) {
+		
+		rocket.draw(g);
+		
+		for(int i = 0; i < aliens.size(); i++ ) {
+			aliens.get(i).draw(g);
+		}
+		
+		for(int i = 0; i < projectiles.size(); i++ ) {
+			projectiles.get(i).draw(g);
+		}
+	}
+	
+	void purgeObjects() {
+		
+		for(int i = 0; i < aliens.size(); i++ ) {
+			if(aliens.get(i).isActive == false) {
+				aliens.remove(i);
+			}
+		}
+		
+		for(int i = 0; i < projectiles.size(); i++ ) {
+			if(projectiles.get(i).isActive == false) {
+				projectiles.remove(i);
+			}
+		}
+	}
 }
-//sfggggggggggggggggggggggggggggg

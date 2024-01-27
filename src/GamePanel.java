@@ -24,6 +24,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
     Timer frameDraw;
     
     Rocketship rocketship = new Rocketship(250,700,50,50);
+    
+    ObjectManager objectmanager = new ObjectManager(rocketship);
 
     public GamePanel() {
     	titleFont = new Font("Arial", Font.PLAIN, 48);
@@ -54,7 +56,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 	}
 	void updateGameState() { 
 		rocketship.update();
-		 
+		objectmanager.update();
 	}
 	void updateEndState() { 
 		 
@@ -78,7 +80,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
 		
-		rocketship.draw(g);
+		objectmanager.draw(g);
 	}
 	
 	void drawEndState(Graphics g)  { 
