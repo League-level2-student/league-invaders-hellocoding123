@@ -28,10 +28,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
     Font defaultFont;
     
     Timer frameDraw;
+    Timer alienSpawn;
     
     Rocketship rocketship = new Rocketship(250,700,50,50);
     
-    ObjectManager objectmanager = new ObjectManager(rocketship);
+    ObjectManager objectManager = new ObjectManager(rocketship);
 
     public GamePanel() {
     	titleFont = new Font("Arial", Font.PLAIN, 48);
@@ -41,10 +42,16 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 		frameDraw.start();
 		 
 		if (needImage) {
-			 loadImage("rocket.png");
+			 loadImage("space.png");
 		}
 
 	}
+    
+    void startGame() {
+    	
+        alienSpawn = new Timer(1000 , objectManager);
+        alienSpawn.start();
+    }
     
     void loadImage(String imageFile) {
 	    if (needImage) {
@@ -79,7 +86,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 	}
 	void updateGameState() { 
 		rocketship.update();
-		objectmanager.update();
+		objectManager.update();
 	}
 	void updateEndState() { 
 		 
@@ -103,10 +110,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 		g.setColor(Color.BLACK);
 		//g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
 		 
-		g.drawImage(image, 0, 0, WIDTH, HEIGHT, null);
-		//not working ^
+		g.drawImage(image, 0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT, null);
 		
-		objectmanager.draw(g);
+		objectManager.draw(g);
 	}
 	
 	void drawEndState(Graphics g)  { 
@@ -154,6 +160,15 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 		    } 
 		    
 		    else {
+		    	
+		    	if(currentState == MENU) {
+		    		startGame();
+		    	}
+		    	
+		    	if(currentState == GAME) {
+		    		alienSpawn.stop();
+		    	}
+		    	
 		        currentState++;
 		    }
 		}   
@@ -194,6 +209,12 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 			    	rocketship.right = false;
 			    }
 			}
+			
+			if (e.getKeyCode()==KeyEvent.VK_SPACE) {
+				objectManager.addProjectile(rocketship.getProjectile());
+				//not working^
+			}
+			
 		}
 	}
 
