@@ -72,7 +72,7 @@ public class ObjectManager implements ActionListener{
 			}
 		}
 	}
-
+//commit string
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
