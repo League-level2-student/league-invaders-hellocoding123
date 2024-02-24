@@ -43,6 +43,11 @@ public class ObjectManager implements ActionListener{
 		for(int i = 0; i < projectiles.size(); i++ ) {
 			projectiles.get(i).update();
 		}
+		
+		if(rocket.isActive = true) {
+			checkCollision();
+			purgeObjects();
+		} 
 	}
 	
 	void draw(Graphics g) {
@@ -72,7 +77,23 @@ public class ObjectManager implements ActionListener{
 			}
 		}
 	}
-//commit string
+	
+	void checkCollision() {
+		
+		for(int i = 0; i < aliens.size(); i++ ) {
+			for(int i2 = 0; i2 < projectiles.size(); i2++ ) {
+				if(projectiles.get(i2).collisionBox.intersects(aliens.get(i).collisionBox)) {
+					aliens.get(i).isActive = false;
+					projectiles.get(i2).isActive = false;
+				}
+			}
+			if(rocket.collisionBox.intersects(aliens.get(i).collisionBox)) {
+				rocket.isActive = false;
+				aliens.get(i).isActive = false;
+			}
+		}
+	}
+
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
