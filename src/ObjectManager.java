@@ -35,7 +35,7 @@ public class ObjectManager implements ActionListener{
 		for(int i = 0; i < aliens.size(); i++ ) {
 			aliens.get(i).update();
 			
-			if(aliens.get(i).y < LeagueInvaders.HEIGHT || aliens.get(i).y > 0) {
+			if(aliens.get(i).y > LeagueInvaders.HEIGHT) {
 				aliens.get(i).isActive = false;
 			}
 		}
@@ -48,6 +48,8 @@ public class ObjectManager implements ActionListener{
 			checkCollision();
 			purgeObjects();
 		} 
+		
+
 	}
 	
 	void draw(Graphics g) {
