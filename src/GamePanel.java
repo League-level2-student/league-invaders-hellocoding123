@@ -12,7 +12,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class GamePanel extends JPanel implements ActionListener, KeyListener{
+public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	
     final int MENU = 0;
     final int GAME = 1;
@@ -88,7 +88,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 		rocketship.update();
 		objectManager.update();
 		
-		if(rocketship.isActive = false) {
+		if(rocketship.isActive == false) {
 			currentState = END;
 		}
 	}
@@ -115,6 +115,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 		//g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
 		 
 		g.drawImage(image, 0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT, null);
+		g.setFont(titleFont);
+		//g.drawString(getValue();, GAME, END);  not working
 		
 		objectManager.draw(g);
 	}
