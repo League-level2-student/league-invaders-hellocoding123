@@ -15,7 +15,7 @@ public class ObjectManager implements ActionListener{
 	
 	int score = 0;
 	
-	public int getValue() {
+	public int ObjectManager() {
 		return score;
 	}
 	

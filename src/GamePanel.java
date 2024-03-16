@@ -108,6 +108,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.drawString("Press ENTER To Start",152, 400);
 		
 		g.drawString("Press SPACE For Instructions",120, 500);
+		objectManager.score = 0;
 	}
 	
 	void drawGameState(Graphics g) { 
@@ -119,6 +120,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		//g.drawString(getValue();, GAME, END);  not working
 		
 		objectManager.draw(g);
+		
+		g.setFont(defaultFont);
+		g.drawString("Score: " + objectManager.score,10, 20);
 	}
 	
 	void drawEndState(Graphics g)  { 
@@ -130,9 +134,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.drawString("GAME OVER",94, 100);
 		
 		g.setFont(defaultFont);
-		g.drawString("You Killed " + " Enemies",156, 400);
+		g.drawString("You Killed " + objectManager.score + " Enemies",156, 400);
 		
-		g.drawString("Press ENTER To Restart",129, 500);
+		g.drawString("Press ENTER To Restart",135, 500);
 		
 	}
 
